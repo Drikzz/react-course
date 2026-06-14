@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Display-as-you-type</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="../../scripts/react.js"></script>
+    <script src="../../scripts/react-dom.js"></script>
+
+    <script src="../../scripts/chatbot.js"></script>
+
+    <script src="../../scripts/babel.js"></script>
+    <script type="text/babel">
+      // 3g
+      function Hello() {
+        const [inputText, setInputText] = React.useState();
+
+        function insertName(event) {
+          // console.log('type')
+          console.log(event.target.value);
+
+          setInputText(event.target.value);
+        }
+
+        // 3h
+        function clear() {
+          setInputText("");
+        }
+
+        // 3h
+        function generate() {
+          setInputText("Aldrikz");
+        }
+
+        return (
+          <>
+            <input
+              type="text"
+              placeholder="Type a name here"
+              onChange={insertName}
+              value={inputText}
+            />
+            <button onClick={clear}>Reset</button>
+            <button onClick={generate}>Example</button>
+            <p>Hello {inputText}</p>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <Hello />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

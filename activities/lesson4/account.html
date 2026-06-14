@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Account</title>
+    <style>
+      /* 4d */
+      * {
+        font-family: Arial;
+      }
+
+      .forms-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .form-input-container {
+        margin-bottom: 10px;
+      }
+
+      .form-input {
+        padding: 10px 15px;
+        border-radius: 4px;
+        border-width: 1px;
+        max-width: 300px;
+      }
+
+      .form-password-input {
+        margin-right: 10px;
+      }
+
+      .form-button {
+        background-color: rgba(0, 123, 255);
+        color: white;
+        padding: 12px 18px;
+        border: none;
+        border-radius: 6px;
+      }
+
+      .form-login-button {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      // 4d
+      function Forms() {
+        // 4e
+        const [isShowing, setIsShowing] = React.useState(false);
+
+        const passText = isShowing ? "Hide" : "Show";
+        function showPass() {
+          setIsShowing(!isShowing);
+        }
+
+        return (
+          <div className="forms-container">
+            <div className="form-input-container">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Email"
+                className="form-input form-input-email"
+              />
+            </div>
+
+            <div className="form-input-container">
+              <input
+                type={isShowing ? "text" : "password"}
+                name="password"
+                id="password"
+                placeholder="Password"
+                className="form-input form-password-input"
+              />
+              <button className="show-pass-button" onClick={showPass}>
+                {passText}
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      // 4d
+      function Buttons() {
+        return (
+          <>
+            <button className="form-button form-login-button">Login</button>
+            <button className="form-button">Sign Up</button>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <p>Hello, welcome to my website</p>
+            <Forms />
+            <Buttons />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

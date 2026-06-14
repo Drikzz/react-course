@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Counter</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="../../scripts/react.js"></script>
+    <script src="../../scripts/react-dom.js"></script>
+
+    <script src="../../scripts/chatbot.js"></script>
+
+    <script src="../../scripts/babel.js"></script>
+    <script type="text/babel">
+      // 3D
+      function Counter({ count, setCount }) {
+        // 3c
+        const checkCount = count === 1 ? "time" : "times";
+
+        function increment() {
+          setCount(count + 1);
+
+          // 3a
+          // console.log('Clicked');
+        }
+        console.log(count);
+
+        // 3a
+        return (
+          <button onClick={increment}>
+            Clicked {count} {checkCount}
+          </button>
+        );
+      }
+
+      // 3f
+      function Reset({ setCount }) {
+        function reset() {
+          setCount(0);
+          // console.log("reset");
+        }
+        return <button onClick={reset}>Reset</button>;
+      }
+
+      function App() {
+        // 3b
+        // 3e
+        const [count, setCount] = React.useState(0);
+
+        // 3e
+        return (
+          <>
+            <Counter count={count} setCount={setCount} />
+            <Counter count={count} setCount={setCount} />
+            <Reset setCount={setCount} />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
