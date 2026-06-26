@@ -29,5 +29,6 @@ export default [
         { allowConstantExport: true },
       ],
     },
+    'react/props/types': 'off'
   },
 ]
