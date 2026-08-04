@@ -8,6 +8,9 @@ import { TrackingPage } from "./pages/TrackingPage";
 import { ErrorPage } from "./pages/ErrorPage";
 import "./App.css";
 
+// to be able to run axios.post('/api/reset') in the console
+// window.axios = axios;
+
 function App() {
   const [cart, setCart] = useState([]);
 
