@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import LogoWhite from "../assets/images/logo-white.png";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
 import SearchIcon from "../assets/images/icons/search-icon.png";
@@ -8,8 +8,7 @@ import "./Header.css";
 
 export function Header({ cart }) {
 
-  // making a state for the search query in the search bar
-  // how would i name this?
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   let totalQuantity = 0;
@@ -24,6 +23,8 @@ export function Header({ cart }) {
 
   const handleSearch = () => {
     console.log(searchQuery);
+
+    navigate(`/?search=${searchQuery}`);
   };
 
   return (
