@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, NavLink } from "react-router";
 import LogoWhite from "../assets/images/logo-white.png";
 import MobileLogoWhite from "../assets/images/mobile-logo-white.png";
@@ -6,11 +7,25 @@ import CartIcon from "../assets/images/icons/cart-icon.png";
 import "./Header.css";
 
 export function Header({ cart }) {
+
+  // making a state for the search query in the search bar
+  // how would i name this?
+  const [searchQuery, setSearchQuery] = useState('');
+
   let totalQuantity = 0;
 
   cart.forEach((cartItem) => {
     totalQuantity += cartItem.quantity;
   });
+
+  const updateSearchQuery = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log(searchQuery);
+  };
+
   return (
     <div className="header">
       <div className="left-section">
@@ -21,9 +36,9 @@ export function Header({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
+        <input className="search-bar" type="text" placeholder="Search" value={searchQuery} onChange={updateSearchQuery} />
 
-        <button className="search-button">
+        <button className="search-button" onClick={handleSearch}>
           <img className="search-icon" src={SearchIcon} />
         </button>
       </div>
