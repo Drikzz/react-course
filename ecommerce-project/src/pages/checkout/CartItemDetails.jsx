@@ -12,8 +12,16 @@ export function CartItemDetails({ cartItem, loadCart }) {
     await loadCart();
   };
 
-  const updateQuantity = () => {
-    setIsUpdatingQuantity(!isUpdatingQuantity);
+  const updateQuantity = async () => {
+    if (isUpdatingQuantity) {
+      await axios.put(`/api/cart-items/${cartItem.productId}`, {
+        quantity
+      });
+      await loadCart();
+      setIsUpdatingQuantity(false);
+    } else {
+      setIsUpdatingQuantity(true);
+    }
   };
 
   const handleUpdateQuanty = (event) => {
