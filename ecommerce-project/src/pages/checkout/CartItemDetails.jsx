@@ -20,6 +20,8 @@ export function CartItemDetails({ cartItem, loadCart }) {
         <div className="product-quantity">
           <span>
             Quantity:{" "}
+
+            <input type="text" style={{ width: 50 }} className="update-quantity-input"></input>
             <span className="quantity-label">
               {cartItem.quantity}
             </span>
