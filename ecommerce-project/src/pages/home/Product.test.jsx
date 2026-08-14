@@ -75,4 +75,14 @@ describe('Product Component', () => {
 
     expect(quantitySelector).toHaveValue('1');
   });
+
+  it('update quantity to 3', async () => {
+    render(<Product product={product} loadCart={loadCart} />);
+
+    const user = userEvent.setup();
+    const quantitySelector = screen.getByTestId('quantity-selector');
+    await user.selectOptions(quantitySelector, '3');
+
+    expect(quantitySelector).toHaveValue('3');
+  });
 });
