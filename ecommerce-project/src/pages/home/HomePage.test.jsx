@@ -84,10 +84,20 @@ describe('HomePage component', () => {
 
     expect(productContainers.length).toBe(2);
 
-    const firstProductContainer = within(productContainers[0]).getByTestId('add-to-cart-button');
+    const firstProduct = within(productContainers[0]);
+
+    const firstQuantitySelector = firstProduct.getByTestId('quantity-selector');
+    await user.selectOptions(firstQuantitySelector, '2');
+
+    const firstProductContainer = firstProduct.getByTestId('add-to-cart-button');
     await user.click(firstProductContainer);
 
-    const secondProductContainer = within(productContainers[1]).getByTestId('add-to-cart-button');
+    const secondProduct = within(productContainers[1]);
+
+    const secondQuantitySelector = secondProduct.getByTestId('quantity-selector');
+    await user.selectOptions(secondQuantitySelector, '3');
+
+    const secondProductContainer = secondProduct.getByTestId('add-to-cart-button');
     await user.click(secondProductContainer);
 
     expect(axios.post).toHaveBeenNthCalledWith(
@@ -95,7 +105,7 @@ describe('HomePage component', () => {
       '/api/cart-items',
       {
         productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
-        quantity: 1
+        quantity: 2
       }
     );
 
@@ -104,7 +114,7 @@ describe('HomePage component', () => {
       '/api/cart-items',
       {
         productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-        quantity: 1
+        quantity: 3
       }
     );
 
